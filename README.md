@@ -1,34 +1,46 @@
-## Stack
+# Python template
 
+### Components
 - Poetry (dep management)
 - Ruff (formatting/linting)
-- pre-commit-hooks
-- pytest (tests)
-- mypy (typecheck)
+- Pre-commit-hooks
+- Pytest (tests)
+- MyPy (typecheck)
 
-## Setup
+### Prerequisites
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/totmuz/pybase.git
-   cd pybase
-   ```
+- Poetry
+- Python 3.12+
+- Make (optional)
 
-2. Install dependencies:
-   ```
-   poetry install
-   ```
+### Quickstart
 
-3. Set up pre-commit hooks:
-   ```
-   poetry run pre-commit install
-   ```
+- **Select Python version (if using pyenv):**
+```bash
+# Install specific Python version
+pyenv install $(cat .python-version)
 
-4. Create a `.env` file in the project root and add your environment variables:
-   ```
-   cp .env.example .env
-   ```
-   Edit the `.env` file and add your actual values.
+# Set local version for this project
+pyenv local $(cat .python-version)
+```
+
+- **With Make:**
+```bash
+make setup    # Sets everything else
+make help     # Show commands
+```
+
+- **Manually:**
+
+```sh
+poetry install
+
+# (optional)
+poetry run pre-commit install
+
+# (optional)
+cp .env.example .env
+```
 
 ## Running the Application
 
@@ -64,17 +76,22 @@ Uses `mypy`.
 
 Pre-commit hooks are set up to run Ruff and mypy before each commit. They're installed when you run `pre-commit install`, but you can also run them manually:
 
-```
+```sh
 poetry run pre-commit run --all-files
 ```
 
 ## Project Structure
 
-- `src/core/`: Main package code
-- `dev/`: Development helpers
-- `pyproject.toml`: Poetry configuration and project metadata
-- `.pre-commit-config.yaml`: Pre-commit hook configuration
-- `.editorconfig`: Editor configuration for consistent coding styles
+```
+├── src/               # Source code
+│   └── core/          # Main package
+├── dev/               # Development tools and scripts
+├── docs/              # Documentation
+├── tests/             # Test files
+├── .env.example       # Example environment variables
+├── pyproject.toml     # Project configuration
+└── Makefile           # Common development commands
+```
 
 ## Managing Dependencies
 
